@@ -25,6 +25,7 @@ const Create: NextPage<Props> = () => {
     } catch (error: any) {
       console.log(error.response.data);
     }
+    setCreating(false);
   };
   return (
     <AdminLayout title='新增文章'>
