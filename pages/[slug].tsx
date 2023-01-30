@@ -112,7 +112,7 @@ export const getStaticProps: GetStaticProps<
           createdAt: createdAt.toString(),
         },
       },
-      revalidate: 60,
+      revalidate: 1,
     };
   } catch (error) {
     return { notFound: true };
