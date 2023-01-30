@@ -165,6 +165,7 @@ const Editor: NextPage<Props> = ({
                 busy={busy}
                 title={btnTitle}
                 onClick={handleSubmit}
+                disabled={busy}
               />
             </div>
           </div>

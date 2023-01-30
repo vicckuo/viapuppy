@@ -9,6 +9,7 @@ import Post from '@/models/Post';
 import AdminLayout from '@/components/layout/AdminLayout';
 import axios from 'axios';
 import { generateFormData } from '@/utils/helper';
+import { useState } from 'react';
 
 interface PostResponse extends FinalPost {
   id: string;
@@ -17,7 +18,9 @@ interface PostResponse extends FinalPost {
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Update: NextPage<Props> = ({ post }) => {
+  const [updating, setUpdating] = useState(false);
   const handleSubmit = async (post: FinalPost) => {
+    setUpdating(true);
     try {
       // we have to generate FormData
       const formData = generateFormData(post);
@@ -28,6 +31,7 @@ const Update: NextPage<Props> = ({ post }) => {
     } catch (error: any) {
       console.log(error.response.data);
     }
+    setUpdating(false);
   };
   return (
     <AdminLayout title='更新文章'>
@@ -36,6 +40,7 @@ const Update: NextPage<Props> = ({ post }) => {
           initialValue={post}
           onSubmit={handleSubmit}
           btnTitle='更新'
+          busy={updating}
         />
       </div>
     </AdminLayout>
